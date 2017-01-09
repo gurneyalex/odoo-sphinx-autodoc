@@ -40,7 +40,10 @@ def load_modules(app):
 
     if(app.env.config.sphinxodoo_root_path):
         sys.path.append(app.env.config.sphinxodoo_root_path)
-    import openerp
+    try:
+        import openerp
+    except ImportError:
+        import odoo as openerp
 
     if not addons_path:
         addons_path = os.environ.get('ODOO_ADDONS_PATH', '')
